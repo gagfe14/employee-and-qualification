@@ -1,0 +1,33 @@
+<?php
+
+$title = 'Edit qualification';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+
+$qualificationDescription = $form->get('qualificationDescription');
+$qualificationDescription->setAttribute('class', 'form-control');
+$qualificationDescription->setAttribute('placeholder', 'Qualification Description');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('qualification', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($qualificationDescription) ?>
+    <?= $this->formElement($qualificationDescription) ?>
+    <?= $this->formElementErrors()->render($qualificationDescription, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

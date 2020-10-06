@@ -1,0 +1,65 @@
+<?php
+$title = 'Add new employee';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the title element:
+$lastName = $form->get('lastName');
+$lastName->setAttribute('class', 'form-control');
+$lastName->setAttribute('placeholder', 'Insert last name');
+
+// This provides a default CSS class and placeholder text for the artist element:
+$firstName = $form->get('firstName');
+$firstName->setAttribute('class', 'form-control');
+$firstName->setAttribute('placeholder', 'Insert first name');
+
+// This provides a default CSS class and placeholder text for the artist element:
+$departmentId = $form->get('departmentId');
+$departmentId->setAttribute('class', 'form-control');
+$departmentId->setAttribute('placeholder', 'Insert department id');
+    
+// This provides a default CSS class and placeholder text for the artist element:
+$qualification = $form->get('qualification');
+$qualification->setAttribute('class', 'form-control');
+$qualification->setAttribute('placeholder', 'Insert qualification');
+
+// This provides CSS classes for the submit button:
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('employee', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<?php // Wrap the elements in divs marked as form groups, and render the
+      // label, element, and errors separately within ?>
+<div class="form-group">
+    <?= $this->formLabel($lastName) ?>
+    <?= $this->formElement($lastName) ?>
+    <?= $this->formElementErrors()->render($lastName, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($firstName) ?>
+    <?= $this->formElement($firstName) ?>
+    <?= $this->formElementErrors()->render($firstName, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($departmentId) ?>
+    <?= $this->formElement($departmentId) ?>
+    <?= $this->formElementErrors()->render($departmentId, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($qualification) ?>
+    <?= $this->formElement($qualification) ?>
+    <?= $this->formElementErrors()->render($qualification, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

@@ -1,0 +1,43 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Edit employee';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$employee = $form->get('lastName');
+$album->setAttribute('class', 'form-control');
+$album->setAttribute('placeholder', 'Last Name');
+
+$firstName = $form->get('firstName');
+$firstName->setAttribute('class', 'form-control');
+$firstName->setAttribute('placeholder', 'firstName');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('employee', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($employee) ?>
+    <?= $this->formElement($employee) ?>
+    <?= $this->formElementErrors()->render($employee, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($firstName) ?>
+    <?= $this->formElement($firstName) ?>
+    <?= $this->formElementErrors()->render($firstName, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

@@ -1,0 +1,43 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Edit departments';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$departmentName = $form->get('departmentName');
+$departmentName->setAttribute('class', 'form-control');
+$departmentName->setAttribute('placeholder', 'Department Name');
+
+$departmentDescription = $form->get('departmentDescription');
+$departmentDescription->setAttribute('class', 'form-control');
+$departmentDescription->setAttribute('placeholder', 'Department description');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('department', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($departmentName) ?>
+    <?= $this->formElement($departmentName) ?>
+    <?= $this->formElementErrors()->render($departmentName, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($departmentDescription) ?>
+    <?= $this->formElement($departmentDescription) ?>
+    <?= $this->formElementErrors()->render($departmentDescription, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

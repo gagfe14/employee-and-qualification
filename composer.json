@@ -22,7 +22,7 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Album\\": "module/Album/src/",
-            "Employee\\": "module/Employee/src/"
+            "Employees\\": "module/Employees/src/"
         }
     },
     "autoload-dev": {
